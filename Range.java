@@ -7,6 +7,7 @@ public class Range implements IntegerSequence {
     if (start<=end) {
       this.start = start;
       this.end = end;
+      this.current = start;
     }
     else {
       throw new IllegalArgumentException();
@@ -19,14 +20,15 @@ public class Range implements IntegerSequence {
     return (this.end - this.start + 1);
   }
   public boolean hasNext() {
-    return(this.current<=this.end && this.current>=this.start);
+    if (current>end)return false;
+    else return true;
   }
   public int next() {
     if (hasNext()==false) {
       throw new NoSuchElementException();
     }
     current++;
-    return this.current-1;
+    return current-1;
   }
 
 }
